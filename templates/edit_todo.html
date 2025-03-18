@@ -1,0 +1,43 @@
+{% include 'layout.html' %}
+
+<!-- 创建新待办事项的表单 -->
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Let's edit your todo!
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <!-- 标题输入框 -->
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="title"  value="{{ todo.title }}" required>
+                </div>
+                <!-- 描述文本框 -->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" name="description" rows="3" required>{{ todo.description }}
+                    </textarea>
+                </div>
+                <!-- 优先级选择框 -->
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select class="form-control" name="priority">
+                        <option {% if todo.priority == 1 %} selected="selected" {% endif %} >1</option>
+                        <option {% if todo.priority == 2 %} selected="selected" {% endif %} >2</option>
+                        <option {% if todo.priority == 3 %} selected="selected" {% endif %} >3</option>
+                        <option {% if todo.priority == 4 %} selected="selected" {% endif %} >4</option>
+                        <option {% if todo.priority == 5 %} selected="selected" {% endif %} >5</option>
+                    </select>
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button onclick="window.location.href='/todos'"
+                        type="button" class="btn btn-secondary">Cancel</button>
+                <button onclick="window.location.href='/todos/delete/{{ todo.id }}'"
+                        type="button" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+

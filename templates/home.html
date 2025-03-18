@@ -1,0 +1,63 @@
+{% include 'layout.html' %}
+
+<!-- 主要内容区域 -->
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Your Todos
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">List of your Todos!</h5>
+            <p class="card-text">Information regarding your todos.</p>
+            <!-- 待办事项表格 -->
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Complete</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for todo in todos %}
+                    {% if todo.complete == false %}
+                    <!-- 示例待办事项条目 -->
+                    <tr class="pointer">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ todo.title }}</td>
+                        <td>{{ todo.description }}</td>
+                        <td>{{ todo.priority }}</td>
+                        <td>{{ todo.complete }}</td>
+                        <td>
+                            <button onclick="window.location.href = 'complete/{{ todo.id }}'"
+                                    type="button" class="btn btn-success">Complete</button>
+                            <a href="edit_todo/{{ todo.id }}" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr class="pointer alert alert-success">
+                        <td>{{ loop.index }}</td>
+                        <td class="strike-through-td">{{ todo.title }}</td>
+                        <td >{{ todo.description }}</td>
+                        <td>{{ todo.priority }}</td>
+                        <td>{{ todo.complete }}</td>
+                        <td>
+                            <button onclick="window.location.href = 'complete/{{ todo.id }}'"
+                                    type="button" class="btn btn-success">Undo</button>
+                            <a href="edit_todo/{{ todo.id }}" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- 添加新待办事项按钮 -->
+            <a class="btn btn-primary" href="add_todo">Add a new Todo</a>
+        </div>
+    </div>
+</div>
+

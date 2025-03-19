@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 import models
 from database import engine
 from routers import todos, auth, users
-import uvicorn
+# import uvicorn
 from starlette.staticfiles import StaticFiles
 from starlette.responses import RedirectResponse
 from starlette import status
@@ -31,5 +31,5 @@ app.include_router(auth.router)
 app.include_router(users.router)
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8090)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=8090)
